@@ -26,30 +26,22 @@ def read_file_to_variable(file_name):
     df = pd.read_excel(xls, "MetasoftStudio")
 
     # Select Columns from xls file
-    selected_columns = df[["V'O2", "V'O2/kg", "V'O2/HR", "V'CO2", "HR", "WR"]]
+    selected_columns = df[["t", "V'O2", "V'O2/kg", "V'O2/HR", "V'CO2", "HR", "WR"]]
     return selected_columns
 
 breath_data_from_file = read_file_to_variable("Copy_of_CPET_DM01__Max_Breath_by_Breath.xlsx")
-vo2 = breath_data_from_file[["V'O2"]]
-vo2kg = breath_data_from_file[["V'O2/kg"]]
-vo2hr = breath_data_from_file[["V'O2/HR"]]
-vco2 = breath_data_from_file[["V'CO2"]]
-hr = breath_data_from_file[["HR"]]
-wr = breath_data_from_file[["WR"]]
+time = breath_data_from_file["t"]
+vo2 = breath_data_from_file["V'O2"]
+vo2kg = breath_data_from_file["V'O2/kg"]
+vo2hr = breath_data_from_file["V'O2/HR"]
+vco2 = breath_data_from_file["V'CO2"]
+hr = breath_data_from_file["HR"]
+wr = breath_data_from_file["WR"]
 
+# print(breath_data_from_file)
+# print(vo2)
 
-print(breath_data_from_file)
+# plt.plot(vo2, vco2)
+# plt.show()
 
-print(type(breath_data_from_file))
-
-print(vo2)
-print(vo2kg)
-print(vo2hr)
-print(vco2)
-print(hr)
-print(wr)
-
-#  print(vo2)
-
-plt.plot(breath_data_from_file)
 
