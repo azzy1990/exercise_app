@@ -12,6 +12,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
 
+
 def print_hi(name):
     print(f'Hi, {name}')
 
@@ -41,7 +42,14 @@ wr = breath_data_from_file["WR"]
 # print(breath_data_from_file)
 # print(vo2)
 
-# plt.plot(vo2, vco2)
-# plt.show()
+plt.scatter(vo2, vco2, alpha=0.7, s=30)
+plt.title("V'O2 / V'CO2", fontsize=22)
+plt.xlabel("V'O2", fontsize=17)
+plt.ylabel("V'CO2", fontsize=17)
+plt.show()
 
-
+plt.scatter(vo2, hr, alpha=0.7, s=30)
+plt.title("V'O2 / Heart rate", fontsize=22)
+plt.xlabel("V'O2", fontsize=17)
+plt.ylabel("Heart rate", fontsize=17)
+plt.show()
