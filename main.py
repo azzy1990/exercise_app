@@ -5,8 +5,9 @@ This will validate that Pycharm is working locally on your device
 and Github our version control system is syncing properly.
 The console bellow should print 'Hi, Group!'
 """
+
 #  required  packages to implement this part:  pip  pandas  xlrd  openpyxl
-#  to install  >  Ctrl + Alt + S   >  (+)  to ADD PACKAGES
+#  to install  >  Ctrl + Alt + S   >   (+)  to ADD PACKAGES
 import pandas as pd
 
 def print_hi(name):
