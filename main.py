@@ -40,27 +40,38 @@ vco2 = breath_data_from_file["V'CO2"]
 hr = breath_data_from_file["HR"]
 wr = breath_data_from_file["WR"]
 
-# print(breath_data_from_file)
-# print(vo2)
 #  reading bitmaps
 napier_logo_bitmap = Image.open('Edinburgh-Napier-logo-1000.png')
 bitmap_height = napier_logo_bitmap.size[0]
 bitmap_width = napier_logo_bitmap.size[1]
 # napier_logo_bitmap = np.array(napier_logo_bitmap).astype(np.float)/255
-fig = plt.figure()
-#plt.rcParams['figure.dpi'] = 100
+
+
+fig, ax = plt.subplots()
 plt.scatter(vo2, vco2, alpha=0.7, s=30)
 plt.margins(x=0, y=0)
 plt.title("V'O2 / V'CO2", fontsize=22)
 plt.xlabel("V'O2", fontsize=17)
 plt.ylabel("V'CO2", fontsize=17)
-fig.figimage(napier_logo_bitmap, fig.bbox.xmax - bitmap_height, fig.bbox.ymax )
+#placing the Napier logo in right top corner
+newax = fig.add_axes([0.76, 0.76, 0.23, 0.23], anchor='NE', zorder=1)
+newax.imshow(napier_logo_bitmap)
+newax.axis('off')
 plt.show()
 
-fig = plt.figure()
-plt.scatter(vo2, hr, alpha=0.7, s=30)
-plt.title("V'O2 / Heart rate", fontsize=22)
-plt.xlabel("V'O2", fontsize=17)
-plt.ylabel("Heart rate", fontsize=17)
-fig.figimage(napier_logo_bitmap, fig.bbox.xmax - bitmap_height, fig.bbox.ymax )
+
+
+fig, ax = plt.subplots()
+plt.scatter(time, hr, alpha=0.7, s=30)
+plt.grid()
+plt.xticks(np.arange(0, 300, 50))
+plt.margins(x=0, y=0)
+plt.title("Time / Heart rate", fontsize=22)
+plt.xlabel("Time", fontsize=17)
+plt.ylabel("Heart / Heart rate", fontsize=17)
+#placing the Napier logo in right top corner
+newax = fig.add_axes([0.76, 0.76, 0.23, 0.23], anchor='NE', zorder=1)
+newax.imshow(napier_logo_bitmap)
+newax.axis('off')
 plt.show()
+
