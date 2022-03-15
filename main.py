@@ -46,7 +46,7 @@ wr = breath_data_from_file["WR"]
 #  reading bitmaps
 napier_logo_bitmap = Image.open('Edinburgh-Napier-logo-1000.png')
 
-# drawing a plot
+# drawing   VO2 /  VCO2  graph
 fig, ax = plt.subplots()
 plt.scatter(vo2, vco2, alpha=0.7, s=30)
 plt.margins(x=0, y=0)
@@ -66,7 +66,7 @@ newax.axis('off')
 plt.show()
 
 
-# drawing a plot
+# drawing  HR / TIME  graph
 fig, ax = plt.subplots()
 plt.scatter(time, hr, alpha=0.7, s=30)
 plt.grid(alpha=0.37)
@@ -76,11 +76,48 @@ plt.gca().spines['right'].set_color('0.85')
 plt.gca().spines['top'].set_color('0.85')
 plt.gca().spines['bottom'].set_color('0.5')
 plt.gca().spines['left'].set_color('0.5')
-#plt.gca().spines['top'].set_visible(False)
 plt.margins(x=0, y=0)
 plt.xlabel("Time", fontsize=16, color=('0.5'))
 plt.ylabel("Heart rate", fontsize=16,  color=('0.5'))
-plt.title("Time / Heart rate", fontsize=19, loc='left')
+plt.title("Heart rate / Time", fontsize=19, loc='left')
+#placing the Napier logo in right top corner
+newax = fig.add_axes([0.75, 0.75, 0.235, 0.235], anchor='NE', zorder=1)
+newax.imshow(napier_logo_bitmap)
+newax.axis('off')
+plt.show()
+
+# drawing  VO2 / TIME graph
+fig, ax = plt.subplots()
+plt.scatter(time, vo2, alpha=0.7, s=30)
+plt.grid(alpha=0.37)
+plt.tick_params(axis='x', which='major', labelsize=8)
+plt.xticks(np.arange(0, 400, 17))
+plt.gca().spines['right'].set_color('0.85')
+plt.gca().spines['top'].set_color('0.85')
+plt.gca().spines['bottom'].set_color('0.5')
+plt.gca().spines['left'].set_color('0.5')
+plt.margins(x=0, y=0)
+plt.xlabel("Time", fontsize=16, color=('0.5'))
+plt.ylabel("V'O2", fontsize=16,  color=('0.5'))
+plt.title("V'O2 / Time", fontsize=19, loc='left')
+#placing the Napier logo in right top corner
+newax = fig.add_axes([0.75, 0.75, 0.235, 0.235], anchor='NE', zorder=1)
+newax.imshow(napier_logo_bitmap)
+newax.axis('off')
+plt.show()
+
+# drawing   VO2 /  HR  graph
+fig, ax = plt.subplots()
+plt.scatter(vo2, hr, alpha=0.7, s=30)
+plt.margins(x=0, y=0)
+plt.grid(alpha=0.37)
+plt.gca().spines['right'].set_color('0.85')
+plt.gca().spines['top'].set_color('0.85')
+plt.gca().spines['bottom'].set_color('0.5')
+plt.gca().spines['left'].set_color('0.5')
+plt.title("V'O2 / Heart rate", fontsize=19, loc='left')
+plt.xlabel("V'O2", fontsize=16, color=('0.5'))
+plt.ylabel("Heart rate", fontsize=16, color=('0.5'))
 #placing the Napier logo in right top corner
 newax = fig.add_axes([0.75, 0.75, 0.235, 0.235], anchor='NE', zorder=1)
 newax.imshow(napier_logo_bitmap)
