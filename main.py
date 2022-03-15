@@ -31,8 +31,11 @@ def read_file_to_variable(file_name):
     selected_columns = df[["t", "V'O2", "V'O2/kg", "V'O2/HR", "V'CO2", "HR", "WR"]]
     return selected_columns
 
+# breathe file loading and extracting columns into
 breath_data_from_file = read_file_to_variable("Copy_of_CPET_DM01__Max_Breath_by_Breath.xlsx")
-time = breath_data_from_file["t"]
+time_raw = breath_data_from_file["t"]
+# trim the time strings first 2 character  and 4 last
+time = [item[2:-4] for item in time_raw]
 vo2 = breath_data_from_file["V'O2"]
 vo2kg = breath_data_from_file["V'O2/kg"]
 vo2hr = breath_data_from_file["V'O2/HR"]
@@ -42,14 +45,12 @@ wr = breath_data_from_file["WR"]
 
 #  reading bitmaps
 napier_logo_bitmap = Image.open('Edinburgh-Napier-logo-1000.png')
-bitmap_height = napier_logo_bitmap.size[0]
-bitmap_width = napier_logo_bitmap.size[1]
-# napier_logo_bitmap = np.array(napier_logo_bitmap).astype(np.float)/255
 
-
+# drawing a plot
 fig, ax = plt.subplots()
 plt.scatter(vo2, vco2, alpha=0.7, s=30)
 plt.margins(x=0, y=0)
+plt.grid(alpha=0.4)
 plt.title("V'O2 / V'CO2", fontsize=22)
 plt.xlabel("V'O2", fontsize=17)
 plt.ylabel("V'CO2", fontsize=17)
@@ -60,11 +61,13 @@ newax.axis('off')
 plt.show()
 
 
-
+# drawing a plot
 fig, ax = plt.subplots()
 plt.scatter(time, hr, alpha=0.7, s=30)
-plt.grid()
-plt.xticks(np.arange(0, 300, 50))
+plt.grid(alpha=0.4)
+plt.xticks(time)
+plt.tick_params(axis='x', which='major', labelsize=8)
+plt.xticks(np.arange(0, 400, 17))
 plt.margins(x=0, y=0)
 plt.title("Time / Heart rate", fontsize=22)
 plt.xlabel("Time", fontsize=17)
