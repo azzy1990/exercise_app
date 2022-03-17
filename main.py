@@ -12,6 +12,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from PIL import ImageTk, Image
 import numpy as np
+from scipy.interpolate import make_interp_spline
 
 
 def print_hi(name):
@@ -48,7 +49,19 @@ napier_logo_bitmap = Image.open('Edinburgh-Napier-logo-1000.png')
 
 # drawing   VO2 /  VCO2  graph
 fig, ax = plt.subplots()
-plt.scatter(vo2, vco2, alpha=0.7, s=30)
+plt.scatter(vo2, vco2, alpha=0.5, s=40, linewidths=0.01, edgecolors=None)
+
+vo2_sorted = sorted(vo2)
+vco2_sorted = sorted(vco2)
+X_Y_Spline = make_interp_spline(vo2_sorted, vco2_sorted)
+# Returns evenly spaced numbers
+# over a specified interval.
+X_ = np.linspace(min(vo2_sorted), max(vo2_sorted), 1000)
+Y_ = X_Y_Spline(X_)
+# plot Spline
+#plt.plot(X_, Y_, color="red")
+plt.plot(vo2_sorted, vco2_sorted, linewidth=4, color="white")
+plt.plot(vo2_sorted, vco2_sorted, linewidth=2, color="red")
 plt.margins(x=0, y=0)
 plt.grid(alpha=0.37)
 plt.gca().spines['right'].set_color('0.85')
@@ -65,7 +78,7 @@ newax.imshow(napier_logo_bitmap)
 newax.axis('off')
 plt.show()
 
-
+"""
 # drawing  HR / TIME  graph
 fig, ax = plt.subplots()
 plt.scatter(time, hr, alpha=0.7, s=30)
@@ -124,3 +137,4 @@ newax.imshow(napier_logo_bitmap)
 newax.axis('off')
 plt.show()
 
+"""
