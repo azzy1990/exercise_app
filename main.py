@@ -6,8 +6,9 @@ and Github our version control system is syncing properly.
 The console bellow should print 'Hi, Group!'
 """
 
-#  required  packages to implement this part:  pip  pandas  xlrd  openpyxl matplotlib.pyplot
+#  required  packages to implement this part:  pip  pandas  xlrd  openpyxl matplotlib.pyplot pyex
 #  to install  >    Ctrl + Alt + S   >   (+)  to ADD PACKAGES
+import numpy
 import pandas as pd
 import matplotlib.pyplot as plt
 from PIL import ImageTk, Image
@@ -32,6 +33,12 @@ def read_file_to_variable(file_name):
     selected_columns = df[["t", "V'O2", "V'O2/kg", "V'O2/HR", "V'CO2", "HR", "WR"]]
     return selected_columns
 
+# functino to calculate rolling average
+# x == an array of data. N == number of samples per average
+def running_mean(x, N):
+    cumsum = numpy.cumsum(numpy.insert(x, 0, 0))
+    return (cumsum[N:] - cumsum[:-N]) / float(N)
+
 # breathe file loading and extracting columns into
 breath_data_from_file = read_file_to_variable("Copy_of_CPET_DM01__Max_Breath_by_Breath.xlsx")
 time_raw = breath_data_from_file["t"]
@@ -50,18 +57,17 @@ napier_logo_bitmap = Image.open('Edinburgh-Napier-logo-1000.png')
 # drawing   VO2 /  VCO2  graph
 fig, ax = plt.subplots()
 plt.scatter(vo2, vco2, alpha=0.5, s=40, linewidths=0.01, edgecolors=None)
-
+# sorting lists
 vo2_sorted = sorted(vo2)
 vco2_sorted = sorted(vco2)
-X_Y_Spline = make_interp_spline(vo2_sorted, vco2_sorted)
-# Returns evenly spaced numbers
-# over a specified interval.
-X_ = np.linspace(min(vo2_sorted), max(vo2_sorted), 1000)
-Y_ = X_Y_Spline(X_)
-# plot Spline
-#plt.plot(X_, Y_, color="red")
-plt.plot(vo2_sorted, vco2_sorted, linewidth=4, color="white")
-plt.plot(vo2_sorted, vco2_sorted, linewidth=2, color="red")
+# calculate rolling average
+vco2_sorted_rolling_average = running_mean(vco2_sorted, 30)
+vo2_sorted_rolling_average  = running_mean(vo2_sorted, 30)
+
+plt.xlim([1, 4])
+plt.ylim([1, 4.5])
+plt.plot(vo2_sorted_rolling_average, vco2_sorted_rolling_average, linewidth=5.7, color="white")
+plt.plot(vo2_sorted_rolling_average, vco2_sorted_rolling_average, linewidth=2, color="fuchsia")
 plt.margins(x=0, y=0)
 plt.grid(alpha=0.37)
 plt.gca().spines['right'].set_color('0.85')
@@ -70,8 +76,8 @@ plt.gca().spines['bottom'].set_color('0.5')
 plt.gca().spines['left'].set_color('0.5')
 #plt.gca().spines['top'].set_visible(False)
 plt.title("V'O2 / V'CO2", fontsize=19, loc='left')
-plt.xlabel("V'O2", fontsize=16, color=('0.5'))
-plt.ylabel("V'CO2", fontsize=16, color=('0.5'))
+plt.xlabel("V'O2", fontsize=16, color=('steelblue'))
+plt.ylabel("V'CO2", fontsize=16, color=('steelblue'))
 #placing the Napier logo in right top corner
 newax = fig.add_axes([0.75, 0.75, 0.235, 0.235], anchor='NE', zorder=1)
 newax.imshow(napier_logo_bitmap)
