@@ -61,13 +61,13 @@ plt.scatter(vo2, vco2, alpha=0.5, s=40, linewidths=0.01, edgecolors=None)
 vo2_sorted = sorted(vo2)
 vco2_sorted = sorted(vco2)
 # calculate rolling average
-vco2_sorted_rolling_average = running_mean(vco2_sorted, 30)
 vo2_sorted_rolling_average  = running_mean(vo2_sorted, 30)
-
-plt.xlim([1, 4])
-plt.ylim([1, 4.5])
+vco2_sorted_rolling_average = running_mean(vco2_sorted, 30)
+# rolling average lines
 plt.plot(vo2_sorted_rolling_average, vco2_sorted_rolling_average, linewidth=5.7, color="white")
 plt.plot(vo2_sorted_rolling_average, vco2_sorted_rolling_average, linewidth=2, color="fuchsia")
+plt.xlim([1, 4])
+plt.ylim([1, 4.5])
 plt.margins(x=0, y=0)
 plt.grid(alpha=0.37)
 plt.gca().spines['right'].set_color('0.85')
@@ -84,7 +84,6 @@ newax.imshow(napier_logo_bitmap)
 newax.axis('off')
 plt.show()
 
-"""
 # drawing  HR / TIME  graph
 fig, ax = plt.subplots()
 plt.scatter(time, hr, alpha=0.7, s=30)
@@ -98,7 +97,7 @@ plt.gca().spines['left'].set_color('0.5')
 plt.margins(x=0, y=0)
 plt.xlabel("Time", fontsize=16, color=('0.5'))
 plt.ylabel("Heart rate", fontsize=16,  color=('0.5'))
-plt.title("Heart rate / Time", fontsize=19, loc='left')
+plt.title("Time / Heart rate", fontsize=19, loc='left')
 #placing the Napier logo in right top corner
 newax = fig.add_axes([0.75, 0.75, 0.235, 0.235], anchor='NE', zorder=1)
 newax.imshow(napier_logo_bitmap)
@@ -118,7 +117,7 @@ plt.gca().spines['left'].set_color('0.5')
 plt.margins(x=0, y=0)
 plt.xlabel("Time", fontsize=16, color=('0.5'))
 plt.ylabel("V'O2", fontsize=16,  color=('0.5'))
-plt.title("V'O2 / Time", fontsize=19, loc='left')
+plt.title("Time / V'O2", fontsize=19, loc='left')
 #placing the Napier logo in right top corner
 newax = fig.add_axes([0.75, 0.75, 0.235, 0.235], anchor='NE', zorder=1)
 newax.imshow(napier_logo_bitmap)
@@ -127,6 +126,15 @@ plt.show()
 
 # drawing   VO2 /  HR  graph
 fig, ax = plt.subplots()
+# sorl lists
+vo2_sorted = sorted(vo2)
+hr_sorted = sorted(hr)
+# calculate rolling averages
+vo2_sorted_rolling_average  = running_mean(vo2_sorted, 30)
+hr_sorted_rolling_average = running_mean(hr_sorted, 30)
+# rolling average lines
+plt.plot(vo2_sorted_rolling_average, hr_sorted_rolling_average, linewidth=5.7, color="white")
+plt.plot(vo2_sorted_rolling_average, hr_sorted_rolling_average, linewidth=2, color="fuchsia")
 plt.scatter(vo2, hr, alpha=0.7, s=30)
 plt.margins(x=0, y=0)
 plt.grid(alpha=0.37)
@@ -135,12 +143,11 @@ plt.gca().spines['top'].set_color('0.85')
 plt.gca().spines['bottom'].set_color('0.5')
 plt.gca().spines['left'].set_color('0.5')
 plt.title("V'O2 / Heart rate", fontsize=19, loc='left')
-plt.xlabel("V'O2", fontsize=16, color=('0.5'))
-plt.ylabel("Heart rate", fontsize=16, color=('0.5'))
+plt.xlabel("V'O2", fontsize=16, color=('steelblue'))
+plt.ylabel("Heart rate", fontsize=16, color=('steelblue'))
 #placing the Napier logo in right top corner
 newax = fig.add_axes([0.75, 0.75, 0.235, 0.235], anchor='NE', zorder=1)
 newax.imshow(napier_logo_bitmap)
 newax.axis('off')
 plt.show()
 
-"""
