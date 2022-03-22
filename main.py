@@ -94,7 +94,6 @@ plt.show()
 # Drawing  VO2 MAX  graph
 fig, ax = plt.subplots()
 plt.scatter(time, vo2, alpha=0.8, s=30)
-plt.grid(alpha=0.37)
 plt.tick_params(axis='x', which='major', labelsize=8)
 plt.xticks(np.arange(0, 500, 18))
 plt.ylim(bottom=1)
