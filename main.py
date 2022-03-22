@@ -30,7 +30,7 @@ def read_file_to_variable(file_name):
     df = pd.read_excel(xls, "MetasoftStudio")
 
     # Select Columns from xls file
-    selected_columns = df[["t", "V'O2", "V'O2/kg", "V'O2/HR", "V'CO2", "HR", "WR"]]
+    selected_columns = df[["t", "V'O2", "V'O2/kg", "V'O2/HR", "V'CO2", "HR", "WR", "V'E"]]
     return selected_columns
 
 # functino to calculate rolling average
@@ -62,16 +62,15 @@ vo2hr = breath_data_from_file["V'O2/HR"]
 vco2 = breath_data_from_file["V'CO2"]
 hr = breath_data_from_file["HR"]
 wr = breath_data_from_file["WR"]
-# ve = breath_data_from_file["V'E"]
+vee = breath_data_from_file["V'E"]
 
-
-#  reading bitmaps
+# Loading bitmap
 napier_logo_bitmap = Image.open('Edinburgh-Napier-logo-1000.png')
 
-# drawing   VCO2 /  VO2  graph
+# Drawing   VCO2 /  VO2  graph
 fig, ax = plt.subplots()
-plt.scatter(vo2, vco2, alpha=0.75, s=50, linewidths=0.05, edgecolors=None)
-plt.xlim([1, 4])
+plt.scatter(vo2, vco2, alpha=0.8, s=50, linewidths=0.05)
+plt.xlim(left=1, right=4.2)
 plt.ylim(bottom=1)
 plt.title("Gas Exchange", fontsize=19, loc='left', y=1.02)
 plt.xlabel("VCO2 (L/min)", fontsize=16)
@@ -80,9 +79,21 @@ plt.ylabel("VO2  (L/min)", fontsize=16)
 plot_setup_insert_logo()
 plt.show()
 
-# drawing  VO2 MAX  graph
+# Drawing   VE  /  VO2  graph
 fig, ax = plt.subplots()
-plt.scatter(time, vo2, alpha=0.7, s=30)
+plt.scatter(vo2, vee, alpha=0.8, s=50, linewidths=0.05)
+plt.xlim(left=1, right=4.2)
+#plt.ylim(bottom=1)
+plt.title("VO2 / VE", fontsize=19, loc='left', y=1.02)
+plt.xlabel("VO2  (L/min)", fontsize=16)
+plt.ylabel("VE  (L/min)", fontsize=16)
+#placing the Napier logo in right top corner
+plot_setup_insert_logo()
+plt.show()
+
+# Drawing  VO2 MAX  graph
+fig, ax = plt.subplots()
+plt.scatter(time, vo2, alpha=0.8, s=30)
 plt.grid(alpha=0.37)
 plt.tick_params(axis='x', which='major', labelsize=8)
 plt.xticks(np.arange(0, 500, 18))
@@ -96,7 +107,7 @@ plt.show()
 
 # drawing  Maximal Oxygen Uptake (VO2 Max)
 fig, ax = plt.subplots()
-plt.scatter(wr, vo2, alpha=0.7, s=30)
+plt.scatter(wr, vo2, alpha=0.8, s=30)
 plt.tick_params(axis='x', which='major', labelsize=8)
 plt.ylim(bottom=1)
 plt.xlabel("Work Rate (W)", fontsize=16)
@@ -108,10 +119,10 @@ plt.show()
 
 # drawing   Heart rate / Work Rate" graph
 fig, ax = plt.subplots()
-plt.scatter(wr, hr, alpha=0.7, s=40, linewidths=0.05)
-plt.title("Heart rate / Work Rate", fontsize=19, loc='left', y=1.02)
-plt.xlabel("Work Rate (W)", fontsize=16)
-plt.ylabel("Heart rate (Beats/ Min)", fontsize=16)
+plt.scatter(wr, hr, alpha=0.8, s=40, linewidths=0.05)
+plt.title("Heart rate", fontsize=19, loc='left', y=1.02)
+plt.xlabel("Work Rate (W)", fontsize=14)
+plt.ylabel("Heart rate (Beats/ Min)", fontsize=14)
 #placing the Napier logo in right top corner
 plot_setup_insert_logo()
 plt.show()
