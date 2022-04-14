@@ -5,7 +5,6 @@ This will validate that Pycharm is working locally on your device
 and Github our version control system is syncing properly.
 The console bellow should print 'Hi, Group!'
 """
-
 #  required  packages to implement this part:  pip  pandas  xlrd  openpyxl matplotlib.pyplot pyex
 #  to install  >    Ctrl + Alt + S   >   (+)  to ADD PACKAGES
 from tkinter import filedialog, Tk
@@ -22,7 +21,6 @@ def print_hi(name):
 
 if __name__ == '__main__':
     print_hi('Group!')
-
 
 #  function returning a set of columns of file provided as parameter
 def read_file_to_variable(file_name):
@@ -119,7 +117,7 @@ def chart(breath_data_from_file):  # breathe file loading and extracting columns
     plot_setup_insert_logo()
     plt.show()
 
-
+#  Created by Alexandru
 import eel
 eel.init("web")
 # @eel.expose
@@ -140,8 +138,8 @@ eel.start('main.html', block=False)  # starts the python web server
 while True:  # keeps the server running
     eel.sleep(10)
 
-"""   ------  PLOTS WITH AVERAGES
 
+"""   ------  PLOTS WITH AVERAGES
 # functino to calculate rolling average
 # x == an array of data. N == number of samples per average
 def running_mean(x, N):
