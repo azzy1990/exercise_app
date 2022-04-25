@@ -68,7 +68,8 @@ def chart(breath_data_from_file):  # breathe file loading and extracting columns
     plt.ylabel("VCO2  (L/min)", fontsize=16)
     # placing the Napier logo in right top corner
     plot_setup_insert_logo()
-    plt.show()
+    # plt.show()
+    plt.savefig("chart__1.png", dpi=140)
 
     # Drawing   VE  /  VO2  graph
     fig, ax = plt.subplots()
@@ -80,7 +81,8 @@ def chart(breath_data_from_file):  # breathe file loading and extracting columns
     plt.ylabel("VE  (L/min)", fontsize=16)
     # placing the Napier logo in right top corner
     plot_setup_insert_logo()
-    plt.show()
+    # plt.show()
+    plt.savefig("chart__2.png", dpi=140)
 
     # Drawing  VO2 MAX  graph
     fig, ax = plt.subplots()
@@ -93,7 +95,8 @@ def chart(breath_data_from_file):  # breathe file loading and extracting columns
     plt.title("VO2 Max", fontsize=19, loc='left', y=1.02)
     # placing the Napier logo in right top corner
     plot_setup_insert_logo()
-    plt.show()
+    # plt.show()
+    plt.savefig("chart__3.png", dpi=140)
 
     # drawing  Maximal Oxygen Uptake (VO2 Max)
     fig, ax = plt.subplots()
@@ -105,7 +108,8 @@ def chart(breath_data_from_file):  # breathe file loading and extracting columns
     plt.title("Maximal Oxygen Uptake (VO2 Max)", fontsize=15, loc='left', y=1.02)
     # placing the Napier logo in right top corner
     plot_setup_insert_logo()
-    plt.show()
+    # plt.show()
+    plt.savefig("chart__4.png", dpi=140)
 
     # drawing   Heart rate / Work Rate" graph
     fig, ax = plt.subplots()
@@ -115,7 +119,8 @@ def chart(breath_data_from_file):  # breathe file loading and extracting columns
     plt.ylabel("Heart rate (Beats/ Min)", fontsize=14)
     # placing the Napier logo in right top corner
     plot_setup_insert_logo()
-    plt.show()
+    # plt.show()
+    plt.savefig("chart__5.png", dpi=140)
 
 #  Created by Alexandru
 import eel
