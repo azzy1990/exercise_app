@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<a id="myfilegetFolder">GetFolder</a>
+<script type="text/javascript" src="/eel.js"></script>
+<script>
+// eel.expose(js_fnct); // functions that communicate with py have to be "exposed"
+// function js_fnct(a) {
+//  alert(a)
+// }
+async function getFolder() {
+var dosya_path = await eel.upload()();
+	if (dosya_path) {
+		console.log(dosya_path);
+	}
+}
+document.getElementById("myfilegetFolder").onclick=async ()=>{
+    await getFolder();
+};
+</script>
+
+
+</body>
+</html>
+

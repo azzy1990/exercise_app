@@ -69,7 +69,7 @@ def chart(breath_data_from_file):  # breathe file loading and extracting columns
     # placing the Napier logo in right top corner
     plot_setup_insert_logo()
     # plt.show()
-    plt.savefig("chart__1.png", dpi=140)
+    plt.savefig("web/chart1.png", dpi=120)
 
     # Drawing   VE  /  VO2  graph
     fig, ax = plt.subplots()
@@ -82,7 +82,7 @@ def chart(breath_data_from_file):  # breathe file loading and extracting columns
     # placing the Napier logo in right top corner
     plot_setup_insert_logo()
     # plt.show()
-    plt.savefig("chart__2.png", dpi=140)
+    plt.savefig("web/chart2.png", dpi=120)
 
     # Drawing  VO2 MAX  graph
     fig, ax = plt.subplots()
@@ -96,7 +96,7 @@ def chart(breath_data_from_file):  # breathe file loading and extracting columns
     # placing the Napier logo in right top corner
     plot_setup_insert_logo()
     # plt.show()
-    plt.savefig("chart__3.png", dpi=140)
+    plt.savefig("web/chart3.png", dpi=120)
 
     # drawing  Maximal Oxygen Uptake (VO2 Max)
     fig, ax = plt.subplots()
@@ -109,7 +109,7 @@ def chart(breath_data_from_file):  # breathe file loading and extracting columns
     # placing the Napier logo in right top corner
     plot_setup_insert_logo()
     # plt.show()
-    plt.savefig("chart__4.png", dpi=140)
+    plt.savefig("web/chart4.png", dpi=120)
 
     # drawing   Heart rate / Work Rate" graph
     fig, ax = plt.subplots()
@@ -120,7 +120,7 @@ def chart(breath_data_from_file):  # breathe file loading and extracting columns
     # placing the Napier logo in right top corner
     plot_setup_insert_logo()
     # plt.show()
-    plt.savefig("chart__5.png", dpi=140)
+    plt.savefig("web/chart5.png", dpi=120)
 
 #  Created by Alexandru
 import eel
@@ -136,7 +136,7 @@ def upload():
     uploaded_file = filedialog.askopenfile()
     chart(read_file_to_variable(uploaded_file.name))
 
-eel.start('main.html', block=False)  # starts the python web server
+eel.start('home.html', block=False)  # starts the python web server
 
 # eel.js_fnct( "String was printed" ) # has to be in the js code, exposed and declared
 
