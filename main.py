@@ -13,6 +13,7 @@ import numpy
 import pandas as pd
 import matplotlib.pyplot as plt
 from PIL import ImageTk, Image
+from fpdf import FPDF
 import numpy as np
 from scipy.interpolate import make_interp_spline
 
@@ -21,6 +22,15 @@ def print_hi(name):
 
 if __name__ == '__main__':
     print_hi('Group!')
+
+#  function saving pdf
+def save_pdf():
+    pdf = FPDF()
+    pdf.add_page()
+    pdf.set_font("Arial", size=15)
+    pdf.cell(200, 10, txt="pdf text", ln=1, align='C')
+    pdf.cell(200, 10, txt="text",     ln=2, align='C')
+    pdf.output('result.pdf')
 
 #  function returning a set of columns of file provided as parameter
 def read_file_to_variable(file_name):
